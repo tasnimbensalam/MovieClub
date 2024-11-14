@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -34,6 +36,7 @@ public class Register extends AppCompatActivity {
             return insets;
         });
 
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
         callSignIn = findViewById(R.id.signin);
         btn = findViewById(R.id.register);
@@ -48,22 +51,43 @@ public class Register extends AppCompatActivity {
             startActivity(intent);
         });
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                rootNode = FirebaseDatabase.getInstance();
-                reference = rootNode.getReference("users");
+        btn.setOnClickListener(view -> {
+            String name = regName.getEditText().getText().toString();
+            String username = regUsername.getEditText().getText().toString();
+            String email = regEmail.getEditText().getText().toString();
+            String password = regPassword.getEditText().getText().toString();
+            String phone = regphone.getEditText().getText().toString();
 
-                String name = regName.getEditText().getText().toString();
-                String username = regUsername.getEditText().getText().toString();
-                String email = regEmail.getEditText().getText().toString();
-                String password = regPassword.getEditText().getText().toString();
-                String phone = regphone.getEditText().getText().toString();
-                UserHelperClass user = new UserHelperClass(name, username, phone,email, password);
+            // Firebase Authentication - Create user with email and password
+            firebaseAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            // Save additional user data to the database
+                            rootNode = FirebaseDatabase.getInstance();
+                            reference = rootNode.getReference("users");
 
-                // Save the user to the database
-                reference.child(phone).setValue(user);
-            }
+                            UserHelperClass user = new UserHelperClass(name, username, phone, email, password);
+
+                            // Get the unique user ID from FirebaseAuth
+                            String userId = firebaseAuth.getCurrentUser().getUid();
+
+                            // Store user information in the database under the user's UID
+                            reference.child(userId).setValue(user)
+                                    .addOnSuccessListener(aVoid -> {
+                                        // User saved successfully
+                                        Toast.makeText(Register.this, "User Registered Successfully", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(Register.this, login.class);
+                                        startActivity(intent);
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        // Failed to save user
+                                        Toast.makeText(Register.this, "Failed to Register User", Toast.LENGTH_SHORT).show();
+                                    });
+                        } else {
+                            // Registration failed
+                            Toast.makeText(Register.this, "Registration Failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
         });
-    }
-}
+
+    }}

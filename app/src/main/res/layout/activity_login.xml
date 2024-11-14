@@ -52,16 +52,17 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/username"
-            android:hint="Username"
+            android:id="@+id/email"
+            android:hint="Email"
             android:textColor="@color/text_color"
             android:textColorHint="@color/hint_color"
             style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:textColor="#CAC8C8"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:textColor="#CAC8C8"/>
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
@@ -103,6 +104,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/signin"
             android:layout_gravity="right"
             android:layout_margin="5dp"
             android:layout_marginBottom="5dp"

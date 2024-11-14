@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.google.gms.google.services)
+
+
 }
 
 android {
@@ -47,6 +49,9 @@ dependencies {
 
     // Firebase Authentication library
     implementation("com.google.firebase:firebase-auth")
+
+    implementation ("com.google.firebase:firebase-database:20.0.6")
+
     //implementation ("com.github.Dimezis:BlurView:version-2.0.3")
     //implementation ("com.github.Dimezis:BlurView:2.0.3")
     implementation ("com.github.Dimezis:BlurView:version-2.0.3")
