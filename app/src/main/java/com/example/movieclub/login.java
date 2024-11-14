@@ -27,7 +27,7 @@ import java.util.Objects;
 
 public class login extends AppCompatActivity {
 
-    private Button callSignUp, signInButton;
+    private Button callSignUp, signInButton,forgetButton;
     private TextInputLayout emailInput, passwordInput;
     private FirebaseAuth firebaseAuth;
     private GoogleSignInClient googleSignInClient;
@@ -58,12 +58,15 @@ public class login extends AppCompatActivity {
         passwordInput = findViewById(R.id.password);
         callSignUp = findViewById(R.id.signup);
         signInButton = findViewById(R.id.signin);
-
+        forgetButton=findViewById(R.id.forget);
         callSignUp.setOnClickListener(view -> {
             Intent intent = new Intent(login.this, Register.class);
             startActivity(intent);
         });
-
+        forgetButton.setOnClickListener(view -> {
+            Intent intent = new Intent(login.this, forgetpasswordActivity.class);
+            startActivity(intent);
+        });
         signInButton.setOnClickListener(view -> {
             String email = Objects.requireNonNull(emailInput.getEditText()).getText().toString().trim();
             String password = Objects.requireNonNull(passwordInput.getEditText()).getText().toString().trim();
