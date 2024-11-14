@@ -102,27 +102,64 @@
             android:text="Forget Password ?" />
 
         <Button
+            android:id="@+id/signin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/signin"
             android:layout_gravity="right"
             android:layout_margin="5dp"
             android:layout_marginBottom="5dp"
+            android:backgroundTint="#CAC8C8"
             android:color="#ffffff"
             android:elevation="0dp"
             android:text="Sign In"
-            android:backgroundTint="#CAC8C8"
             android:textColor="#000000" />
-        <Button
+
+        <LinearLayout
+            android:id="@+id/google"
             android:layout_width="match_parent"
-            android:id="@+id/signup"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:background="#00000000"
-            android:elevation="0dp"
             android:layout_margin="5dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="New User ? SIGN UP" />
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/border_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            tools:ignore="TouchTargetSizeCheck">
+
+            <ImageView
+                android:id="@+id/google_logo"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="Google Logo"
+                android:src="@drawable/google" />
+
+            <TextView
+                android:id="@+id/signin_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="Continue With Google"
+                android:textColor="#CAC8C8"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/signup"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_gravity="right"
+        android:layout_margin="5dp"
+        android:background="#00000000"
+        android:elevation="0dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="New User ? SIGN UP"
+        tools:ignore="TouchTargetSizeCheck" />
 
 </LinearLayout>
