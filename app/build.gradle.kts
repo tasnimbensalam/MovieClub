@@ -40,6 +40,9 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.compose.theme.adapter)
     implementation(libs.firebase.database)
+    implementation(libs.room.common)
+    implementation(libs.room.runtime)
+    implementation(libs.volley)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -55,10 +58,10 @@ dependencies {
 
     implementation ("com.github.Dimezis:BlurView:version-2.0.3")
     implementation ("com.google.android.gms:play-services-auth:20.2.0")
-    
+    annotationProcessor(libs.room.compiler)
 
-
-
+    implementation("com.github.bumptech.glide:glide:4.15.1")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
 
 
 }
