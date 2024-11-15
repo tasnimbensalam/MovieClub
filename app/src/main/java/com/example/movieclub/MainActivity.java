@@ -14,6 +14,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.appcheck.FirebaseAppCheck;
+import com.google.firebase.appcheck.debug.DebugAppCheckProviderFactory;
+
 public class MainActivity extends AppCompatActivity {
 //variables
     Animation topAnim,botomAnim;
@@ -33,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         image=findViewById(R.id.image);
+        FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
+        firebaseAppCheck.installAppCheckProviderFactory(DebugAppCheckProviderFactory.getInstance());
 
         slogan=findViewById(R.id.slogan);
         image.setAnimation(topAnim);

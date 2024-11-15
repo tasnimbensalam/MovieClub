@@ -54,7 +54,7 @@
                 app:dividerColor="@color/transparent" />
 
             <ImageButton
-                android:id="@+id/profilepic"
+                android:id="@+id/profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/md_theme_dark_background"

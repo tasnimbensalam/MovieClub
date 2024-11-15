@@ -11,6 +11,7 @@ import androidx.room.Room;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -99,7 +100,7 @@ public class Home extends AppCompatActivity {
         loadData("HorrorMovies", R.id.horrormoviesRVIEW);
         loadData("RomanceMovies", R.id.romancemoviesRVIEW);
 
-        ImageButton profilepic = findViewById(R.id.profilepic);
+        ImageButton profile = findViewById(R.id.profile);
         MaterialButton movie = findViewById(R.id.movies);
         MaterialButton tv = findViewById(R.id.tvshows);
 
@@ -179,7 +180,7 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        profilepic.setOnClickListener(new View.OnClickListener() {
+        profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -217,6 +218,16 @@ public class Home extends AppCompatActivity {
                         });
                     }
                 });
+            }
+        });
+
+        // Set up the profile button
+        ImageButton profileButton = findViewById(R.id.profile);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, Profile.class);
+                startActivity(intent);
             }
         });
 
